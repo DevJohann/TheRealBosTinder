@@ -27,7 +27,7 @@ import controller.LoginController;
  * @author Johann
  * @see JFrame
  * @see ActionListener
- * @version 0.1 (10/12/2022)
+ * @version 0.2 (11/12/2022)
  */
 
 public class LoginView extends JFrame implements ActionListener{
@@ -130,12 +130,16 @@ public class LoginView extends JFrame implements ActionListener{
 		switch(command) {
 		case "login":
 			try {
-				LoginController.loginButtonEvent();
+				//Prueba: User: juagalindo Password: P,u[2PyrjNM_:_9
+				LoginController.loginButtonEvent(usernameField.getText(), String.valueOf(passwordField.getPassword()));
+				
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();
 			}
 			break;
 		case "volver":
+			usernameField.setText("");
+			passwordField.setText("");
 			LoginController.volverButtonEvent();
 			break;
 		}

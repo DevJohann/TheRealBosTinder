@@ -29,24 +29,20 @@ public class UsuarioDTO {
 	private String contrasena;
 	@CsvBindByPosition(position = 7)
 	private String correo;
-	@CsvBindByPosition(position = 8)
-	//TODO: Aprender DATE
-	@CsvCustomBindByPosition(position = 9, converter = DateConverter.class)
+	@CsvCustomBindByPosition(position = 8, converter = DateConverter.class)
 	private Date nacimiento;
-	@CsvBindByPosition(position = 10)
+	@CsvBindByPosition(position = 9)
 	private String edad;
-	/*
-	* private String ingresos; //No aplica para mujeres
-	* private String divorcio; //No aplica para hombres
-	*/
-	@CsvBindByPosition(position = 13)
+	@CsvBindByPosition(position = 12)
 	private int noLikesRecibidos; 
-	@CsvBindByPosition(position = 14)
+	@CsvBindByPosition(position = 13)
 	private int noLikesEnviados; 
-	@CsvBindByPosition(position = 15)
+	@CsvBindByPosition(position = 14)
 	private int noMatch;
-	@CsvBindByPosition(position = 16)
+	@CsvBindByPosition(position = 15)
 	private String estado;
+	
+	//TODO: Aprender DATE
 
 	
 	public String getUID() {
