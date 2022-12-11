@@ -55,12 +55,14 @@ public class PrincipalView extends JFrame implements ActionListener{
 		loginButton.setFont(new Font(Constants.TextTypo, Font.PLAIN, 16));
 		loginButton.addActionListener(this);
 		loginButton.setActionCommand("login");
+		loginButton.setFocusable(false);
 		
 		registerButton = new JButton("Registrarse");
 		registerButton.setBounds(360, 150, Constants.largerButtonW, Constants.largeButtonH);
 		registerButton.setFont(new Font(Constants.TextTypo, Font.PLAIN, 16));
 		registerButton.addActionListener(this);
 		registerButton.setActionCommand("register");
+		registerButton.setFocusable(false);
 		
 		buttonsPanel.add(loginButton);
 		buttonsPanel.add(registerButton);

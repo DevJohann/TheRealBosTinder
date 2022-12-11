@@ -4,13 +4,17 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
+import javax.security.auth.login.LoginContext;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import controller.LoginController;
 
 /**
  * <h1>LoginView</h1>
@@ -23,7 +27,7 @@ import javax.swing.JTextField;
  * @author Johann
  * @see JFrame
  * @see ActionListener
- * @version 0.1
+ * @version 0.1 (10/12/2022)
  */
 
 public class LoginView extends JFrame implements ActionListener{
@@ -31,6 +35,7 @@ public class LoginView extends JFrame implements ActionListener{
 	private JPanel usernamePanel;
 	private JPanel passwordPanel;
 	private JPanel buttonPanel;
+	private JPanel footerPanel;
 	
 	private JLabel title;
 	
@@ -87,30 +92,52 @@ public class LoginView extends JFrame implements ActionListener{
 		
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
-		buttonPanel.setBounds(10, 320, 560, 230);
-		buttonPanel.setBackground(Color.green);
+		buttonPanel.setBounds(10, 320, 560, 100);
 		
 		loginButton = new JButton("Ingresar");
 		loginButton.setBounds(10, 20, Constants.medButtonW, Constants.medButtonH);
 		loginButton.setFont(new Font(Constants.TextTypo, Font.PLAIN, Constants.medButtonSize));
-		
-		//Crear un panel de barra inferior
-		backButton = new JButton("Volver");
-		backButton.setBounds(10, 190, Constants.medButtonW, Constants.medButtonH);
-		backButton.setFont(new Font(Constants.TextTypo, Font.PLAIN, Constants.medButtonSize));
-		
+		loginButton.setFocusable(false);
+		loginButton.addActionListener(this);
+		loginButton.setActionCommand("login");
+
 		buttonPanel.add(loginButton);
-		buttonPanel.add(backButton);
+				
+		footerPanel = new JPanel();
+		footerPanel.setBounds(10, 440, 560, 100);
+		footerPanel.setLayout(null);
+		
+		backButton = new JButton("Volver");
+		backButton.setBounds(10, 60, Constants.medButtonW, Constants.medButtonH);
+		backButton.setFont(new Font(Constants.TextTypo, Font.PLAIN, Constants.medButtonSize));
+		backButton.setFocusable(false);
+		backButton.addActionListener(this);
+		backButton.setActionCommand("volver");
+		
+		footerPanel.add(backButton);
 		
 		add(title);
 		add(usernamePanel);
 		add(passwordPanel);
+		add(footerPanel);
 		add(buttonPanel);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		String command = e.getActionCommand();
 		
+		switch(command) {
+		case "login":
+			try {
+				LoginController.loginButtonEvent();
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			}
+			break;
+		case "volver":
+			LoginController.volverButtonEvent();
+			break;
+		}
 	}
 }
