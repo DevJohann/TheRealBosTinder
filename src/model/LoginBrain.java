@@ -23,4 +23,8 @@ public class LoginBrain {
 		
 		return false;
 	}
+	
+	public String checkUserRol(String username, String password) {
+		return (username.equals("admin")&&password.equals("1234")) ? "rol_admin": "rol_user";
+	}
 }

@@ -31,6 +31,8 @@ public class LoginController {
 	public static void mostrar() {ventana.setVisible(true);}
 	public static void ocultar() {ventana.setVisible(false);}
 	
+	public static String rol_actual = "";
+	
 	/**
 	 * <h2>loginButtonEvent</h2>
 	 * <p>
@@ -42,13 +44,23 @@ public class LoginController {
 	 */
 	public static void loginButtonEvent(String usernameField, String passwordField) throws FileNotFoundException {
 
-		boolean response = brain.checkUser(usernameField, passwordField);
-		if(response) 
-			Windows.showMessage("Usuario corecto");
-		else
-			Windows.showMessage("Usuario incorrecto");
+		String rol = brain.checkUserRol(usernameField, passwordField);
+		if(rol.equals("rol_admin")) {
+			//TODO: Mostrar vista de administrador
+			Windows.showMessage("Bienvenido administrador");
+			rol_actual = "rol_admin";
+		}else {
+			boolean response = brain.checkUser(usernameField, passwordField);
+			if(response) {
+				Windows.showMessage("Usuario corecto");
+			//TODO: Mostrar vista principal
+			rol_actual = "rol_user";
+			}else
+				Windows.showMessage("Usuario incorrecto");
+		}
+		
 		//TODO: Aprender pruebas unitarias
-		//src: https://www.youtube.com/watch?v=sgGGjisdNPA&t=1850s
+//		src: https://www.youtube.com/watch?v=sgGGjisdNPA&t=1850s
 //		CSVHandler.readCSVFile().forEach(UsuarioDTO -> System.out.println(UsuarioDTO.toString())); //Funciona correctamente
 		
 //		List<UsuarioDTO> response = CSVHandler.readCSVFile(); //Funciona correctamente
